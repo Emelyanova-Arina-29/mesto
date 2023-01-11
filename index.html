@@ -30,21 +30,33 @@
       <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_edit">
-      <form class="popup__container" name="popupEdit">
+      <form class="popup__form" name="popupEdit" novalidate>
         <button class="popup__close" type="button" aria-label="Закрыть форму"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_type_name" type="text" value="" name="nameProfile" placeholder="Имя">
-        <input class="popup__input popup__input_type_description" type="text" value="" name="descriptionProfile" placeholder="Вид деятельности">
-        <button class="popup__save" type="submit" aria-label="Сохранить введенные данные">Сохранить</button>
+      <label class="popup__label">
+        <input class="popup__input popup__input_type_name" type="text" value="" name="nameProfile" id="nameProfile" placeholder="Имя" minlength="2" maxlength="40" required>
+        <span class="nameProfile-error popup__input-error"></span>
+      </label>
+      <label class="popup__label">
+        <input class="popup__input popup__input_type_description" type="text" value="" name="descriptionProfile" id="descriptionProfile" placeholder="Вид деятельности" minlength="2" maxlength="200" required>
+        <span class="descriptionProfile-error popup__input-error"></span>
+      </label>
+        <button class="popup__button" type="submit" aria-label="Сохранить введенные данные">Сохранить</button>
       </form>
     </div>
     <div class="popup popup_type_create">
-      <form class="popup__container" name="popupAdd">
+      <form class="popup__form" name="popupAdd" novalidate>
         <button class="popup__close" type="button" aria-label="Закрыть форму"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input class="popup__input popup__input_type_title" type="text" value="" name="titleImage" placeholder="Название">
-        <input class="popup__input popup__input_type_link" type="text" value="" name="linkImage" placeholder="Ссылка на картинку">
-        <button class="popup__save" type="submit" aria-label="Создать карточку">Создать</button>
+        <label class="popup__label">
+          <input class="popup__input popup__input_type_title" type="text" value="" name="titleImage" id="titleImage" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="titleImage-error popup__input-error"></span>
+        </label>
+        <label class="popup__label">
+          <input class="popup__input popup__input_type_link" type="url" value="" name="linkImage" id="linkImage" placeholder="Ссылка на картинку" required>
+          <span class="linkImage-error popup__input-error"></span>
+        </label>
+        <button class="popup__button" type="submit" aria-label="Создать карточку">Создать</button>
       </form>
     </div>
     <div class="popup popup_type_view">
@@ -66,6 +78,7 @@
     </article>
   </template>
   <script src="./scripts/constants.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

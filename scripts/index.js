@@ -4,7 +4,7 @@ const buttonOpenPopupCreateCard = page.querySelector('.profile__add');
 const buttonOpenPopupEditProfile = page.querySelector('.profile__edit');
 
 const popup = page.querySelector('.popup');
-const formPopup = popup.querySelector('.popup__container');
+const formPopup = popup.querySelector('.popup__form');
 
 const popupEditProfile = page.querySelector('.popup_type_edit');
 const popupCreateCard = page.querySelector('.popup_type_create');
@@ -28,16 +28,36 @@ const popupEditProfileClose = popupEditProfile.querySelector('.popup__close');
 const popupCreateCardClose = popupCreateCard.querySelector('.popup__close');
 const popupViewPhotoClose = popupViewPhoto.querySelector('.popup__close');
 
+/* Закрытие формы по клику на Overlay */
+
+function closePopupOverlay(evt, item) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(item);
+  }
+}
+
+/* Закрытие формы по Esc */
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
 /* Открытие формы */
 
 function openPopup(name) {
   name.classList.add('popup_opened');
+
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 /* Закрытие формы */
 
 function closePopup(name) {
   name.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 /* Сохранение данных в форме редактирования профиля*/
@@ -134,6 +154,21 @@ function addNewCard(evt) {
   closePopup(popupCreateCard);
 }
 
+/* Объект, состоящий из свойств, значениями которых являются классы, необходимые для универсального написания кода валидации */
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};
+
+/* Вызов функции подключения валидации */
+
+enableValidation(validationConfig);
+
 /* Слушатели */
 
 /* Открытие форм */
@@ -170,7 +205,17 @@ popupViewPhotoClose.addEventListener('click', () => {
   closePopup(popupViewPhoto);
 });
 
+/* Закрытие формы по клику на Overlay */
 
+popupEditProfile.addEventListener('mousedown', (evt) => {
+  closePopupOverlay(evt, popupEditProfile);
+});
 
+popupCreateCard.addEventListener('mousedown', (evt) => {
+  closePopupOverlay(evt, popupCreateCard);
+});
 
+popupViewPhoto.addEventListener('mousedown', (evt) => {
+  closePopupOverlay(evt, popupViewPhoto);
+});
 
