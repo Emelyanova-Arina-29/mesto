@@ -28,6 +28,12 @@ const popupEditProfileClose = popupEditProfile.querySelector('.popup__close');
 const popupCreateCardClose = popupCreateCard.querySelector('.popup__close');
 const popupViewPhotoClose = popupViewPhoto.querySelector('.popup__close');
 
+/* Контейнер для добавления карточек */
+
+const cardContainer = page.querySelector('.cards');
+
+/* Объявление функций */
+
 /* Закрытие формы по клику на Overlay */
 
 function closePopupOverlay(evt, item) {
@@ -77,12 +83,12 @@ function like(name) {
 
 /* Открытие изображений */
 
-function openImageView(element) {
-  openPopup(popupView);
+function openImageView(name, link) {
+  popupImage.alt = name;
+  popupNameImage.textContent = name;
+  popupImage.src = link;
 
-  popupImage.alt = element.querySelector('.card__image').alt;
-  popupNameImage.textContent = element.querySelector('.card__title').textContent;
-  popupImage.src = element.querySelector('.card__image').src;
+  openPopup(popupView);
 }
 
 /* Создание карточек из массива с функционалом кнопок*/
@@ -104,7 +110,7 @@ function createCard(name, link) {
   /* Просмотр картинки */
 
   cardImage.addEventListener('click', () => {
-    openImageView(card);
+    openImageView(name, link);
   });
 
   /* Удаление карточки */
@@ -115,10 +121,6 @@ function createCard(name, link) {
 
   return card;
 }
-
-/* Контейнер для добавления карточек */
-
-const cardContainer = page.querySelector('.cards');
 
 /* Добавление карточек на страницу в конец*/
 
@@ -132,12 +134,6 @@ function renderCardStart(name, link) {
   cardContainer.prepend(createCard(name, link));
 }
 
-/* Перебор элементов массива */
-
-initialCards.forEach((elementCard) => {
-  renderCard(elementCard.name, elementCard.link);
-})
-
 /* Добавление новых карточек кнопкой*/
 
 function addNewCard(evt) {
@@ -148,26 +144,8 @@ function addNewCard(evt) {
 
   renderCardStart(cardName, cardLink);
 
-  inputCardName.value = '';
-  inputCardLink.value = '';
-
   closePopup(popupCreateCard);
 }
-
-/* Объект, состоящий из свойств, значениями которых являются классы, необходимые для универсального написания кода валидации */
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
-};
-
-/* Вызов функции подключения валидации */
-
-enableValidation(validationConfig);
 
 /* Слушатели */
 
@@ -180,7 +158,10 @@ buttonOpenPopupEditProfile.addEventListener('click', () => {
 });
 
 buttonOpenPopupCreateCard.addEventListener('click', () => {
+  const buttonSubmitCreateCard = popupCreateCard.querySelector('.popup__button');
+
   openPopup(popupCreateCard);
+  disableButton(buttonSubmitCreateCard, validationConfig);
 });
 
 /* Сохранение данных в профиле */
@@ -189,7 +170,12 @@ popupEditProfile.addEventListener('submit', submitEditProfileForm);
 
 /* Создание новой карточки */
 
-popupCreateCard.addEventListener('submit', addNewCard);
+popupCreateCard.addEventListener('submit', (evt) => {
+  addNewCard(evt);
+
+  inputCardName.value = '';
+  inputCardLink.value = '';
+});
 
 /* Закрытие форм */
 
@@ -199,6 +185,9 @@ popupEditProfileClose.addEventListener('click', () => {
 
 popupCreateCardClose.addEventListener('click', () => {
   closePopup(popupCreateCard);
+
+  inputCardName.value = '';
+  inputCardLink.value = '';
 });
 
 popupViewPhotoClose.addEventListener('click', () => {
@@ -219,3 +208,14 @@ popupViewPhoto.addEventListener('mousedown', (evt) => {
   closePopupOverlay(evt, popupViewPhoto);
 });
 
+/* Вызов функций и запуск циклов */
+
+/* Перебор элементов массива */
+
+initialCards.forEach((elementCard) => {
+  renderCard(elementCard.name, elementCard.link);
+})
+
+/* Вызов функции подключения валидации */
+
+enableValidation(validationConfig);

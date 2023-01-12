@@ -1,6 +1,13 @@
+/* Блокировка кнопки */
+
+function disableButton(buttonElement, config) {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 /* Скрытие ошибки */
 
-function hideInputError(formElement, inputElement,config) {
+function hideInputError(formElement, inputElement, config) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.classList.remove(config.errorClass);
   errorElement.textContent = '';
