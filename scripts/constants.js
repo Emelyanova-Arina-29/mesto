@@ -1,6 +1,6 @@
 /* Массив карточек */
 
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -29,7 +29,7 @@ const initialCards = [
 
 /* Объект, состоящий из свойств, значениями которых являются классы, необходимые для универсального написания кода валидации */
 
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
