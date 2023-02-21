@@ -54,4 +54,12 @@ export class Card {
 
     return this._element;
   }
+
+  getNameImage() {
+    return this._name;
+  }
+
+  getLinkImage() {
+    return this._link;
+  }
 }
