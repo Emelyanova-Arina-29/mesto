@@ -5,7 +5,6 @@ export default class Popup {
 
   openPopup() {
     this._popup.classList.add('popup_opened');
-    this.setEventListeners();
   }
 
   closePopup() {

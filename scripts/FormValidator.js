@@ -59,6 +59,13 @@ export class FormValidator {
     }
   }
 
+ /* Блокировка кнопки */
+
+  buttonStateOff() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
   /* Установка слушателей */
 
   _setEventListeners() {

@@ -5,12 +5,19 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-     return { selectorName: this._profileName.textContent, selectorDescription: this._profileDescription.textContent }
+     const data = {
+      name: this._profileName.textContent,
+      description: this._profileDescription.textContent,
+     }
+
+     return data;
   }
 
 
-  setUserInfo(selectorName, selectorDescription) {
-    this._profileName.textContent = selectorName.value;
-    this._profileDescription.textContent = selectorDescription.value;
+  setUserInfo(data) {
+
+    this._profileName.textContent = data.name;
+    this._profileDescription.textContent = data.description;
+
   }
 }

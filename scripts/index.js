@@ -26,7 +26,8 @@ const popupImage = popupView.querySelector('.popup__image');
 const popupNameImage = popupView.querySelector('.popup__caption');
 const inputCardName = page.querySelector('.popup__input_type_title');
 const inputCardLink = page.querySelector('.popup__input_type_link');
-
+const inputNameProfile = page.querySelector('.popup__input_type_name');
+const inputDescriptionProfile = page.querySelector('.popup__input_type_description');
 
 /* Подключение валидации */
 
@@ -72,34 +73,38 @@ cardList.renderItems();
 
 const popupEditProfile = new PopupWithForm('.popup_type_edit', submitEditForm);
 
-popupEditProfile.setEventListeners();
+function submitEditForm(data) {
 
-function submitEditForm() {
-	user.setUserInfo('.popup__input_type_name', '.popup__input_type_description');
-	popupEditProfile.closePopup();
+	user.setUserInfo({ name: data.inputNameProfile, description: data.inputDescriptionProfile });
+  popupEditProfile.closePopup();
+
 }
+
+popupEditProfile.setEventListeners();
 
 buttonOpenPopupEditProfile.addEventListener('click', () => {
   validationformPopupEdit.removeValidation();
-  const { selectorName, selectorDescription } = user.getUserInfo();
+  const { name, description } = user.getUserInfo();
 
-  inputUserName.value = selectorName;
-  inputUserDescription.value = selectorDescription;
+  inputNameProfile.value = name;
+  inputDescriptionProfile.value = description;
 
   popupEditProfile.openPopup();
+  validationformPopupEdit.buttonStateOff();
 })
 
 /* Добавление новых карточек */
 
 const popupCreateCard = new PopupWithForm('.popup_type_create', (data) => {
-  const newCard = createCard({ name: data.inputCardName, link: data.inputCardLink });
+  const newCard = createCard({ name: data.name, link: data.link });
   cardList.addItemStart(newCard);
+  console.log(data)
 });
-
 
 popupCreateCard.setEventListeners();
 
 buttonOpenPopupCreateCard.addEventListener('click', () => {
   validationformPopupAdd.removeValidation();
   popupCreateCard.openPopup();
+  validationformPopupAdd.buttonStateOff();
 });
