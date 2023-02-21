@@ -8,9 +8,9 @@ export default class UserInfo {
      return { selectorName: this._profileName.textContent, selectorDescription: this._profileDescription.textContent }
   }
 
+
   setUserInfo(selectorName, selectorDescription) {
     this._profileName.textContent = selectorName.value;
     this._profileDescription.textContent = selectorDescription.value;
   }
-
 }
