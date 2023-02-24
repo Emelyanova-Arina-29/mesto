@@ -1,8 +1,6 @@
 .profile__info {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
   grid-area: info;
   justify-self: start;
 }

@@ -1,7 +1,6 @@
 .header {
   padding-top: 45px;
   display: flex;
-  justify-content: start;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 

@@ -1,33 +1,16 @@
-import { Card } from './Card.js';
-import { initialCards, validationConfig } from './constants.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-
-const page = document.querySelector('.page');
-
-const buttonOpenPopupCreateCard = page.querySelector('.profile__add');
-const buttonOpenPopupEditProfile = page.querySelector('.profile__edit');
-
-const formPopupEdit = document.forms.popupEdit;
-const formpopupAdd = document.forms.popupAdd;
-
-const editProfilePopup = page.querySelector('.popup_type_edit');
-const createCardPopup = page.querySelector('.popup_type_create');
-
-const inputUserName = formPopupEdit.elements.nameProfile;
-const inputUserDescription = formPopupEdit.elements.descriptionProfile;
-const profileName = page.querySelector('.profile__name');
-const profileDescription = page.querySelector('.profile__description');
-const popupView = page.querySelector('.popup_type_view');
-const popupImage = popupView.querySelector('.popup__image');
-const popupNameImage = popupView.querySelector('.popup__caption');
-const inputCardName = page.querySelector('.popup__input_type_title');
-const inputCardLink = page.querySelector('.popup__input_type_link');
-const inputNameProfile = page.querySelector('.popup__input_type_name');
-const inputDescriptionProfile = page.querySelector('.popup__input_type_description');
+import { Card } from '../scripts/components/Card.js';
+import { initialCards, validationConfig } from '../scripts/utils/constants.js';
+import { buttonOpenPopupCreateCard,
+  buttonOpenPopupEditProfile,
+  formPopupEdit, formpopupAdd,
+  popupImage, popupNameImage,
+  inputNameProfile, inputDescriptionProfile } from '../scripts/utils/elements.js';
+import { FormValidator } from '../scripts/components/FormValidator.js';
+import { Section } from '../scripts/components/Section.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import './index.css'
 
 /* Подключение валидации */
 
@@ -74,10 +57,8 @@ cardList.renderItems();
 const popupEditProfile = new PopupWithForm('.popup_type_edit', submitEditForm);
 
 function submitEditForm(data) {
-
 	user.setUserInfo({ name: data.inputNameProfile, description: data.inputDescriptionProfile });
   popupEditProfile.closePopup();
-
 }
 
 popupEditProfile.setEventListeners();
