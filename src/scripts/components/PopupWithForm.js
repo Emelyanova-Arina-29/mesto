@@ -17,10 +17,6 @@ export default class PopupWithForm extends Popup {
     return inputValuesList;
   }
 
-  closePopup() {
-    super.closePopup();
-  }
-
   setInputValues(info) {
     this._inputs.forEach((input) => {
       input.value = info[input.name]
