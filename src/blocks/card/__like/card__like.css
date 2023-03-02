@@ -4,12 +4,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25px;
-  max-width: 30px;
-  width: 100%;
-  height: 21px;
+  width: 22px;
+  height: 19px;
   border: none;
-  margin-right: 17px;
-  padding: 0;
+  box-sizing: content-box;
+  margin-bottom: 3px;
 }
 
 .card__like:hover {

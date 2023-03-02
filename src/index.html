@@ -12,7 +12,9 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото пользователя">
+        <button class="profile__edit-avatar" aria-label="Кнопка обновления аватара" type="button">
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото пользователя">
+        </button>
         <div class="profile__info">
           <div class="profile__fullname">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -65,6 +67,24 @@
         <figcaption class="popup__caption"></figcaption>
       </figure>
     </div>
+    <div class="popup popup_type_avatar">
+      <form class="popup__form" name="popupAvatar" novalidate>
+        <button class="popup__close" type="button" aria-label="Закрыть форму"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+      <label class="popup__label">
+        <input class="popup__input popup__input_type_avatar" type="url" value="" name="inputAvatar" id="linkNewAvatar" placeholder="Ссылка на аватар" required>
+        <span class="linkNewAvatar-error popup__input-error"></span>
+      </label>
+        <button class="popup__button" type="submit" aria-label="Сохранить введенные данные">Сохранить</button>
+      </form>
+    </div>
+    <div class="popup popup_type_delete">
+      <form class="popup__form" name="popupDelete" novalidate>
+        <button class="popup__close" type="button" aria-label="Закрыть форму"></button>
+        <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+        <button class="popup__button" type="submit" aria-label="Удалить">Да</button>
+      </form>
+    </div>
   </div>
   <template id="cards">
     <article class="card">
@@ -72,7 +92,10 @@
       <button class="card__delete" type="button" aria-label="Удалить карточку"></button>
       <div class="card__inscription">
         <h2 class="card__title"></h2>
-        <button class="card__like" type="button" aria-label="Поставить лайк"></button>
+        <div class="card__likes">
+          <button class="card__like" type="button" aria-label="Поставить лайк"></button>
+          <p class="card__number-like"></p>
+        </div>
       </div>
     </article>
   </template>
