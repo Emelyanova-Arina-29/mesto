@@ -14,7 +14,7 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import './index.css';
 import Api from '../scripts/components/Api.js';
-import PopupWithDelete from '../scripts/components/PopupWithDelete.js';
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation';
 
 /* Подключение валидации */
 
@@ -207,7 +207,7 @@ buttonOpenPopupAvatar.addEventListener('click', () => {
 
 /* Подтверждение удаления карточки */
 
-const popupDeleteCard = new PopupWithDelete('.popup_type_delete')
+const popupDeleteCard = new PopupWithConfirmation('.popup_type_delete')
 
 popupDeleteCard.setEventListeners()
 
