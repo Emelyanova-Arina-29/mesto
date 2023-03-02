@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, templateId, userId, handleCardClick, { deleteCardClick, likeCardClick, likeCardRemove }) {
+  constructor(data, templateId, userId, handleCardClick, { deleteCardClick, handleLike, removeLike }) {
     this._name = data.name;
     this._link = data.link;
     this._cardId = data._id;
@@ -9,8 +9,8 @@ export class Card {
     this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._deleteCardClick = deleteCardClick;
-    this._likeCardClick = likeCardClick;
-    this._likeCardRemove = likeCardRemove;
+    this._handleLike = handleLike;
+    this._removeLike = removeLike;
   }
 
   _getTemplate() {
@@ -73,9 +73,9 @@ export class Card {
     });
     this._likeButton.addEventListener('click', () => {
       if (this._likeButton.classList.contains('card__like_active')) {
-        this._likeCardRemove(this._cardId);
+        this._removeLike(this._cardId);
       } else {
-        this._likeCardClick(this._cardId);
+        this._handleLike(this._cardId);
       }
     });
     this._deleteButton.addEventListener('click', () => {
@@ -90,7 +90,6 @@ export class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._deleteButton = this._element.querySelector('.card__delete');
     this._likeCounter = this._element.querySelector('.card__number-like');
-
 
     this._likesUser();
 

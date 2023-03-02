@@ -11,7 +11,7 @@ export default class PopupWithConfirmation extends Popup {
 
   /* Кнопка при загрузке */
 
-  buttonStateLoadingDelete(isLoading) {
+  renderLoading(isLoading) {
     if (isLoading) {
       this._buttonSubmit.textContent = 'Удаление...';
     } else {
@@ -21,7 +21,7 @@ export default class PopupWithConfirmation extends Popup {
 
   /* Вызов функции удаления */
 
-  submitButton(deleteCard) {
+  setSubmitHandler(deleteCard) {
     this._deleteCardClick = deleteCard
   }
 
@@ -30,7 +30,6 @@ export default class PopupWithConfirmation extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._deleteCardClick();
-      this.closePopup();
     });
   }
 }

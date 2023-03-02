@@ -25,14 +25,9 @@ export default class PopupWithForm extends Popup {
     })
   }
 
-  /* Кнопка во время загрузки */
-
-  buttonStateLoading(isLoading) {
-    if (isLoading) {
-      this._buttonSubmit.textContent = 'Сохранение...';
-    } else {
-      this._buttonSubmit.textContent = this._buttonSubmitText;
-    }
+  closePopup() {
+    super.closePopup();
+    this._form.reset();
   }
 
   setEventListeners() {
@@ -40,8 +35,6 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._formSubmit(this._getInputValues());
-      this._form.reset();
-      this.closePopup();
     });
   }
 }
