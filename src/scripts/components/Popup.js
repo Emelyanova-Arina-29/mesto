@@ -20,16 +20,6 @@ export default class Popup {
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
-  /* Кнопка во время загрузки */
-
-  renderLoading(isLoading) {
-    if (isLoading) {
-      this._buttonSubmit.textContent = 'Сохранение...';
-    } else {
-      this._buttonSubmit.textContent = this._buttonSubmitText;
-    }
-  }
-
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {

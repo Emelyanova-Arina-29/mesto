@@ -19,6 +19,16 @@ export default class PopupWithForm extends Popup {
     return inputValuesList;
   }
 
+  /* Кнопка во время загрузки */
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._buttonSubmit.textContent = 'Сохранение...';
+    } else {
+      this._buttonSubmit.textContent = this._buttonSubmitText;
+    }
+  }
+
   setInputValues(info) {
     this._inputs.forEach((input) => {
       input.value = info[input.name]
